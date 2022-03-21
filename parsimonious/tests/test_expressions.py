@@ -17,7 +17,6 @@ class LengthTests(TestCase):
     partially redundant with TreeTests.
 
     """
-
     def len_eq(self, node, length):
         """Return whether the match lengths of 2 nodes are equal.
 
@@ -77,7 +76,6 @@ class TreeTests(TestCase):
     covered above.
 
     """
-
     def test_simple_node(self):
         """Test that leaf expressions like ``Literal`` make the right nodes."""
         h = Literal('hello', name='greeting')
@@ -294,7 +292,6 @@ class RepresentationTests(TestCase):
         """Make sure special characters are properly escaped in the repr.
 
         """
-
         # backslash
         self.assertEqual(repr(Grammar(r'''foo = "\\" ''')), u'''Grammar("foo = '\\\\\\\\'")''')
 

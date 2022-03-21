@@ -62,7 +62,6 @@ def expression(callable, rule_name, grammar):
         part of, to make delegating to other rules possible
 
     """
-
     # Resolve unbound methods; allows grammars to use @staticmethod custom rules
     # https://stackoverflow.com/questions/41921255/staticmethod-object-is-not-callable
     if ismethoddescriptor(callable) and hasattr(callable, '__func__'):
@@ -263,7 +262,6 @@ class TokenMatcher(Literal):
     This is for use only with TokenGrammars.
 
     """
-
     def _uncached_match(self, token_list, pos, cache, error):
         if token_list[pos].type == self.literal:
             return Node(self, token_list, pos, pos + 1)
@@ -340,7 +338,6 @@ class Sequence(Compound):
     after another.
 
     """
-
     def _uncached_match(self, text, pos, cache, error):
         new_pos = pos
         length_of_sequence = 0
@@ -367,7 +364,6 @@ class OneOf(Compound):
     wins.
 
     """
-
     def _uncached_match(self, text, pos, cache, error):
         for m in self.members:
             node = m.match_core(text, pos, cache, error)
@@ -402,7 +398,6 @@ class Not(Compound):
     In any case, it never consumes any characters; it's a negative lookahead.
 
     """
-
     def _uncached_match(self, text, pos, cache, error):
         # FWIW, the implementation in Parsing Techniques in Figure 15.29 does
         # not bother to cache NOTs directly.
@@ -425,7 +420,6 @@ class Optional(Compound):
     consumes. Otherwise, it consumes nothing.
 
     """
-
     def _uncached_match(self, text, pos, cache, error):
         node = self.members[0].match_core(text, pos, cache, error)
         return (Node(self, text, pos, pos) if node is None else
